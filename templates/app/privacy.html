@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+
+{% block title %}Privacy Policy - Django Auth System{% endblock %}
+{% block description %}Read our comprehensive privacy policy. Learn how Django Auth System protects your data, handles authentication, and ensures security and privacy compliance.{% endblock %}
+{% block keywords %}privacy policy, data protection, Django auth privacy, user data security, GDPR compliance, authentication privacy{% endblock %}
+
+{% block og_title %}Privacy Policy - Django Auth System{% endblock %}
+{% block og_description %}Read our comprehensive privacy policy. Learn how Django Auth System protects your data and ensures security compliance.{% endblock %}
+
+{% block twitter_title %}Privacy Policy - Django Auth System{% endblock %}
+{% block twitter_description %}Read our comprehensive privacy policy. Learn how we protect your data and ensure security compliance.{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-shield-alt text-primary" style="font-size: 3rem;"></i>
+                        <h1 class="mt-3 mb-0">Privacy Policy</h1>
+                        <p class="text-muted">Your privacy is important to us</p>
+                        <small class="text-muted">Last updated: {{ "now"|date:"F d, Y" }}</small>
+                    </div>
+
+                    <div class="privacy-content">
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-info-circle me-2"></i>Introduction
+                            </h3>
+                            <p>
+                                This Privacy Policy describes how Django Auth System ("we," "our," or "us") 
+                                collects, uses, and protects your personal information when you use our 
+                                authentication platform and services.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-database me-2"></i>Information We Collect
+                            </h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h5>Account Information</h5>
+                                    <ul>
+                                        <li>Email address</li>
+                                        <li>Name and profile information</li>
+                                        <li>Authentication credentials</li>
+                                        <li>Profile picture (via Google OAuth)</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5>Usage Information</h5>
+                                    <ul>
+                                        <li>Login and session data</li>
+                                        <li>IP addresses and device information</li>
+                                        <li>Browser type and version</li>
+                                        <li>Usage patterns and preferences</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-cogs me-2"></i>How We Use Your Information
+                            </h3>
+                            <div class="alert alert-light">
+                                <ul class="mb-0">
+                                    <li><strong>Authentication:</strong> To verify your identity and provide secure access</li>
+                                    <li><strong>Communication:</strong> To send important updates about your account</li>
+                                    <li><strong>Security:</strong> To detect and prevent fraudulent activities</li>
+                                    <li><strong>Improvement:</strong> To enhance our services and user experience</li>
+                                    <li><strong>Legal Compliance:</strong> To comply with applicable laws and regulations</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-share-alt me-2"></i>Information Sharing
+                            </h3>
+                            <p>We do not sell, trade, or rent your personal information. We may share information only in these circumstances:</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="sharing-card">
+                                        <h5><i class="fas fa-balance-scale me-2"></i>Legal Requirements</h5>
+                                        <p>When required by law, court order, or government request.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="sharing-card">
+                                        <h5><i class="fas fa-handshake me-2"></i>Service Providers</h5>
+                                        <p>With trusted partners who help us operate our services (Google, Stripe).</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-lock me-2"></i>Data Security
+                            </h3>
+                            <div class="security-features">
+                                <div class="row">
+                                    <div class="col-md-4 text-center mb-3">
+                                        <i class="fas fa-certificate text-success" style="font-size: 2rem;"></i>
+                                        <h6 class="mt-2">SSL Encryption</h6>
+                                        <small class="text-muted">All data transmitted over HTTPS</small>
+                                    </div>
+                                    <div class="col-md-4 text-center mb-3">
+                                        <i class="fas fa-key text-warning" style="font-size: 2rem;"></i>
+                                        <h6 class="mt-2">Secure Storage</h6>
+                                        <small class="text-muted">Encrypted database storage</small>
+                                    </div>
+                                    <div class="col-md-4 text-center mb-3">
+                                        <i class="fas fa-user-shield text-primary" style="font-size: 2rem;"></i>
+                                        <h6 class="mt-2">Access Control</h6>
+                                        <small class="text-muted">Limited employee access</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-user-cog me-2"></i>Your Rights
+                            </h3>
+                            <div class="alert alert-info">
+                                <h6>You have the right to:</h6>
+                                <ul class="mb-0">
+                                    <li>Access your personal data</li>
+                                    <li>Correct inaccurate information</li>
+                                    <li>Delete your account and data</li>
+                                    <li>Export your data</li>
+                                    <li>Withdraw consent</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-cookie-bite me-2"></i>Cookies
+                            </h3>
+                            <p>
+                                We use cookies and similar technologies to maintain your session, 
+                                remember your preferences, and improve our services. You can control 
+                                cookies through your browser settings.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-child me-2"></i>Children's Privacy
+                            </h3>
+                            <p>
+                                Our services are not intended for children under 13. We do not 
+                                knowingly collect personal information from children under 13.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-edit me-2"></i>Policy Updates
+                            </h3>
+                            <p>
+                                We may update this Privacy Policy from time to time. We will notify 
+                                you of any material changes by posting the new policy on this page 
+                                and updating the "Last updated" date.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-envelope me-2"></i>Contact Us
+                            </h3>
+                            <p>
+                                If you have any questions about this Privacy Policy or our data practices, 
+                                please contact us at:
+                            </p>
+                            <div class="alert alert-light">
+                                <p class="mb-0">
+                                    <strong>Email:</strong> privacy@djangoauth.com<br>
+                                    <strong>Address:</strong> Django Auth System, 123 Tech Street, San Francisco, CA 94105
+                                </p>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'app:home' %}" class="btn btn-primary">
+                            <i class="fas fa-home me-2"></i>Back to Home
+                        </a>
+                        <a href="{% url 'app:terms' %}" class="btn btn-outline-secondary ms-2">
+                            <i class="fas fa-file-contract me-2"></i>Terms of Service
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.privacy-content h3 {
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+.sharing-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.5rem;
+    border-radius: 10px;
+    height: 100%;
+    margin-bottom: 1rem;
+}
+
+.security-features {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+    padding: 2rem;
+    border-radius: 15px;
+}
+</style>
+{% endblock %} 

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Welcome to Django Auth Template{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card">
+                <div class="card-header text-center bg-success text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-check-circle me-2"></i>
+                        Welcome Aboard!
+                    </h4>
+                </div>
+                <div class="card-body text-center p-5">
+                    <i class="fas fa-user-check fa-4x text-success mb-4"></i>
+                    <h5 class="card-title">Account Created Successfully!</h5>
+                    <p class="card-text mb-4">
+                        Your account has been created and you are now signed in. 
+                        Let's complete your profile to get started.
+                    </p>
+                    
+                    <div class="d-grid gap-3">
+                        <a href="{% url 'authentication:profile' %}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-user-edit me-2"></i>
+                            Complete Your Profile
+                        </a>
+                        
+                        <a href="{% url 'app:home' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-home me-2"></i>
+                            Go to Dashboard
+                        </a>
+                    </div>
+                    
+                    <div class="alert alert-info mt-4">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        <small>
+                            <strong>Tip:</strong> You're all set! No additional verification needed with our secure passwordless authentication system.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

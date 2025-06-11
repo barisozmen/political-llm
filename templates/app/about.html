@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %}About Django Auth System - Modern Authentication Solutions{% endblock %}
+{% block description %}Learn about our Django authentication platform. Built with security-first approach, featuring Google OAuth, magic links, and modern UI. Perfect for developers.{% endblock %}
+{% block keywords %}Django authentication, about Django auth, secure login, Google OAuth, magic links, Django development, authentication features{% endblock %}
+
+{% block og_title %}About Django Auth System - Modern Authentication Solutions{% endblock %}
+{% block og_description %}Learn about our Django authentication platform. Built with security-first approach, featuring Google OAuth, magic links, and modern UI.{% endblock %}
+
+{% block twitter_title %}About Django Auth System{% endblock %}
+{% block twitter_description %}Learn about our Django authentication platform. Built with security-first approach, featuring Google OAuth and magic links.{% endblock %}
+
+{% block extra_js %}
+<!-- Schema.org Structured Data for About Page -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Django Auth System",
+    "description": "Learn about our Django authentication platform. Built with security-first approach, featuring Google OAuth, magic links, and modern UI.",
+    "url": "https://djangotemplate.bozmen.xyz/about/",
+    "mainEntity": {
+        "@type": "Organization",
+        "name": "Django Auth System",
+        "description": "Modern Django authentication system with Google OAuth, magic links, and Stripe integration",
+        "url": "https://djangotemplate.bozmen.xyz",
+        "foundingDate": "2024",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any"
+    }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-info-circle text-primary" style="font-size: 3rem;"></i>
+                        <h1 class="mt-3 mb-0">About Django Auth System</h1>
+                        <p class="text-muted">Modern authentication made simple</p>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-rocket me-2"></i>Our Mission
+                            </h3>
+                            <p class="lead">
+                                We're building the future of web authentication with a focus on security, 
+                                simplicity, and user experience. Our Django-powered platform provides 
+                                modern authentication solutions that developers and users love.
+                            </p>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="feature-card">
+                                <h4 class="text-primary">
+                                    <i class="fas fa-shield-alt me-2"></i>Security First
+                                </h4>
+                                <p>
+                                    Built with enterprise-grade security features including secure session management, 
+                                    CSRF protection, and modern OAuth2 integration with Google.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="feature-card">
+                                <h4 class="text-primary">
+                                    <i class="fas fa-mobile-alt me-2"></i>Mobile Ready
+                                </h4>
+                                <p>
+                                    Responsive design that works seamlessly across all devices. 
+                                    Beautiful UI components built with Bootstrap 5 for consistent experience.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="feature-card">
+                                <h4 class="text-primary">
+                                    <i class="fas fa-bolt me-2"></i>Fast & Reliable
+                                </h4>
+                                <p>
+                                    Optimized for performance with efficient database queries, 
+                                    caching strategies, and minimal resource footprint.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="feature-card">
+                                <h4 class="text-primary">
+                                    <i class="fas fa-code me-2"></i>Developer Friendly
+                                </h4>
+                                <p>
+                                    Clean, maintainable code with comprehensive documentation. 
+                                    Easy to customize and extend for your specific needs.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-cogs me-2"></i>Technology Stack
+                            </h3>
+                            <div class="row">
+                                <div class="col-md-3 col-6 text-center mb-3">
+                                    <i class="fab fa-python text-success" style="font-size: 2rem;"></i>
+                                    <p class="mt-2 mb-0"><strong>Django</strong></p>
+                                    <small class="text-muted">Web Framework</small>
+                                </div>
+                                <div class="col-md-3 col-6 text-center mb-3">
+                                    <i class="fab fa-bootstrap text-primary" style="font-size: 2rem;"></i>
+                                    <p class="mt-2 mb-0"><strong>Bootstrap 5</strong></p>
+                                    <small class="text-muted">UI Framework</small>
+                                </div>
+                                <div class="col-md-3 col-6 text-center mb-3">
+                                    <i class="fab fa-google text-danger" style="font-size: 2rem;"></i>
+                                    <p class="mt-2 mb-0"><strong>Google OAuth</strong></p>
+                                    <small class="text-muted">Authentication</small>
+                                </div>
+                                <div class="col-md-3 col-6 text-center mb-3">
+                                    <i class="fas fa-credit-card text-warning" style="font-size: 2rem;"></i>
+                                    <p class="mt-2 mb-0"><strong>Stripe</strong></p>
+                                    <small class="text-muted">Payments</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'app:home' %}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-home me-2"></i>Back to Home
+                        </a>
+                        {% if not user.is_authenticated %}
+                        <a href="{% url 'account_signup' %}" class="btn btn-outline-primary btn-lg ms-2">
+                            <i class="fas fa-user-plus me-2"></i>Get Started
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.feature-card {
+    padding: 1.5rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    height: 100%;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card h4 {
+    margin-bottom: 1rem;
+}
+</style>
+{% endblock %} 

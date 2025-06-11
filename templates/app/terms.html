@@ -1,0 +1,284 @@
+{% extends 'base.html' %}
+
+{% block title %}Terms of Service - Django Auth System{% endblock %}
+{% block description %}Read our terms of service for Django Auth System. Understand user agreements, service usage, payment terms, and legal policies for our authentication platform.{% endblock %}
+{% block keywords %}terms of service, user agreement, Django auth terms, service terms, legal policy, authentication terms, user responsibilities{% endblock %}
+
+{% block og_title %}Terms of Service - Django Auth System{% endblock %}
+{% block og_description %}Read our terms of service for Django Auth System. Understand user agreements, service usage, and legal policies.{% endblock %}
+
+{% block twitter_title %}Terms of Service - Django Auth System{% endblock %}
+{% block twitter_description %}Read our terms of service for Django Auth System. Understand user agreements and service usage policies.{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <div class="text-center mb-4">
+                        <i class="fas fa-file-contract text-primary" style="font-size: 3rem;"></i>
+                        <h1 class="mt-3 mb-0">Terms of Service</h1>
+                        <p class="text-muted">Please read these terms carefully</p>
+                        <small class="text-muted">Last updated: {{ "now"|date:"F d, Y" }}</small>
+                    </div>
+
+                    <div class="terms-content">
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-handshake me-2"></i>Agreement to Terms
+                            </h3>
+                            <p>
+                                By accessing and using Django Auth System ("Service"), you accept and agree to 
+                                be bound by the terms and provision of this agreement. These Terms of Service 
+                                ("Terms") apply to all visitors, users, and others who access or use the Service.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-user-check me-2"></i>Use License
+                            </h3>
+                            <div class="alert alert-light">
+                                <p><strong>Permission is granted to temporarily use the Service for:</strong></p>
+                                <ul class="mb-0">
+                                    <li>Personal and commercial authentication purposes</li>
+                                    <li>Integration with your applications and services</li>
+                                    <li>Development and testing of authentication flows</li>
+                                    <li>Educational and research purposes</li>
+                                </ul>
+                            </div>
+                            <p class="mt-3">
+                                This license shall automatically terminate if you violate any of these 
+                                restrictions and may be terminated by us at any time.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-ban me-2"></i>Prohibited Uses
+                            </h3>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="prohibited-card">
+                                        <h5><i class="fas fa-virus text-danger me-2"></i>Malicious Activities</h5>
+                                        <ul>
+                                            <li>Attempting to hack or compromise security</li>
+                                            <li>Uploading malware or viruses</li>
+                                            <li>Conducting DDoS attacks</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="prohibited-card">
+                                        <h5><i class="fas fa-user-slash text-danger me-2"></i>Abuse & Harassment</h5>
+                                        <ul>
+                                            <li>Harassing other users</li>
+                                            <li>Creating fake accounts</li>
+                                            <li>Spamming or sending unsolicited content</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="prohibited-card">
+                                        <h5><i class="fas fa-gavel text-danger me-2"></i>Illegal Activities</h5>
+                                        <ul>
+                                            <li>Violating any applicable laws</li>
+                                            <li>Infringing intellectual property rights</li>
+                                            <li>Facilitating fraudulent activities</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="prohibited-card">
+                                        <h5><i class="fas fa-tools text-danger me-2"></i>System Abuse</h5>
+                                        <ul>
+                                            <li>Reverse engineering the service</li>
+                                            <li>Attempting to access restricted areas</li>
+                                            <li>Overloading system resources</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-user-shield me-2"></i>User Accounts
+                            </h3>
+                            <div class="account-responsibilities">
+                                <h5>Account Creation</h5>
+                                <p>
+                                    You must provide accurate and complete information when creating an account. 
+                                    You are responsible for maintaining the confidentiality of your account credentials.
+                                </p>
+                                
+                                <h5>Account Security</h5>
+                                <p>
+                                    You agree to immediately notify us of any unauthorized use of your account. 
+                                    We cannot be held liable for any loss or damage arising from your failure to 
+                                    comply with these security obligations.
+                                </p>
+                                
+                                <h5>Account Termination</h5>
+                                <p>
+                                    We reserve the right to terminate or suspend accounts that violate these terms 
+                                    or engage in prohibited activities.
+                                </p>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-credit-card me-2"></i>Payment Terms
+                            </h3>
+                            <div class="alert alert-info">
+                                <h6>Billing and Subscriptions</h6>
+                                <ul class="mb-0">
+                                    <li>Subscription fees are billed in advance on a monthly or annual basis</li>
+                                    <li>All payments are processed securely through Stripe</li>
+                                    <li>Refunds are available within 30 days of purchase</li>
+                                    <li>Prices may change with 30 days notice</li>
+                                    <li>Failed payments may result in service suspension</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-shield-alt me-2"></i>Service Availability
+                            </h3>
+                            <div class="availability-info">
+                                <div class="row">
+                                    <div class="col-md-4 text-center mb-3">
+                                        <i class="fas fa-clock text-success" style="font-size: 2rem;"></i>
+                                        <h6 class="mt-2">99.9% Uptime</h6>
+                                        <small class="text-muted">Target availability</small>
+                                    </div>
+                                    <div class="col-md-4 text-center mb-3">
+                                        <i class="fas fa-tools text-warning" style="font-size: 2rem;"></i>
+                                        <h6 class="mt-2">Maintenance</h6>
+                                        <small class="text-muted">Scheduled downtime</small>
+                                    </div>
+                                    <div class="col-md-4 text-center mb-3">
+                                        <i class="fas fa-life-ring text-primary" style="font-size: 2rem;"></i>
+                                        <h6 class="mt-2">Support</h6>
+                                        <small class="text-muted">24/7 monitoring</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-exclamation-triangle me-2"></i>Disclaimer
+                            </h3>
+                            <div class="alert alert-warning">
+                                <p class="mb-0">
+                                    The Service is provided "as is" without any warranties, express or implied. 
+                                    We do not warrant that the Service will be uninterrupted, secure, or error-free. 
+                                    Your use of the Service is at your own risk.
+                                </p>
+                            </div>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-balance-scale me-2"></i>Limitation of Liability
+                            </h3>
+                            <p>
+                                In no event shall Django Auth System be liable for any indirect, incidental, 
+                                special, consequential, or punitive damages, including without limitation, 
+                                loss of profits, data, use, goodwill, or other intangible losses.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-gavel me-2"></i>Governing Law
+                            </h3>
+                            <p>
+                                These Terms shall be interpreted and governed by the laws of the State of California, 
+                                United States, without regard to its conflict of law provisions.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-edit me-2"></i>Changes to Terms
+                            </h3>
+                            <p>
+                                We reserve the right to update these Terms at any time. When we do, we will 
+                                revise the updated date at the top of this page. We encourage users to 
+                                review this page periodically.
+                            </p>
+                        </section>
+
+                        <section class="mb-4">
+                            <h3 class="text-primary mb-3">
+                                <i class="fas fa-envelope me-2"></i>Contact Information
+                            </h3>
+                            <p>If you have any questions about these Terms, please contact us:</p>
+                            <div class="alert alert-light">
+                                <p class="mb-0">
+                                    <strong>Email:</strong> legal@djangoauth.com<br>
+                                    <strong>Address:</strong> Django Auth System, 123 Tech Street, San Francisco, CA 94105<br>
+                                    <strong>Phone:</strong> +1 (555) 123-4567
+                                </p>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'app:home' %}" class="btn btn-primary">
+                            <i class="fas fa-home me-2"></i>Back to Home
+                        </a>
+                        <a href="{% url 'app:privacy' %}" class="btn btn-outline-secondary ms-2">
+                            <i class="fas fa-shield-alt me-2"></i>Privacy Policy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.terms-content h3 {
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+.prohibited-card {
+    background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+    padding: 1.5rem;
+    border-radius: 10px;
+    height: 100%;
+    margin-bottom: 1rem;
+    border-left: 4px solid #e53e3e;
+}
+
+.account-responsibilities {
+    background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid #38a169;
+}
+
+.availability-info {
+    background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.account-responsibilities h5 {
+    color: #2d3748;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.account-responsibilities h5:first-child {
+    margin-top: 0;
+}
+</style>
+{% endblock %} 

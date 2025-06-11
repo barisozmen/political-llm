@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Magic Link Sent{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card">
+                <div class="card-body text-center p-5">
+                    <div class="mb-4">
+                        <i class="fas fa-paper-plane fa-4x text-success"></i>
+                    </div>
+                    
+                    <h3 class="card-title text-success mb-3">
+                        Magic Link Sent!
+                    </h3>
+                    
+                    <p class="card-text mb-4">
+                        We've sent a secure login link to your email address. 
+                        Click the link in your email to log in instantly.
+                    </p>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-clock me-2"></i>
+                        <strong>Note:</strong> The magic link will expire in 1 hour and can only be used once.
+                    </div>
+                    
+                    <div class="d-grid gap-2 mt-4">
+                        <a href="{% url 'authentication:magic_link' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-redo me-2"></i>
+                            Send Another Link
+                        </a>
+                        <a href="{% url 'app:home' %}" class="btn btn-secondary">
+                            <i class="fas fa-home me-2"></i>
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Troubleshooting Card -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h6 class="mb-0">
+                        <i class="fas fa-question-circle me-2"></i>
+                        Didn't receive the email?
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <ul class="small mb-0">
+                        <li>Check your spam/junk folder</li>
+                        <li>Make sure you entered the correct email address</li>
+                        <li>Wait a few minutes for the email to arrive</li>
+                        <li>Try requesting a new magic link</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

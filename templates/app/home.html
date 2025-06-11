@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %}Django Auth System - Modern Passwordless Authentication Platform{% endblock %}
+{% block description %}Secure Django authentication platform with Google OAuth, magic links, and Stripe payments. Fast, modern, and developer-friendly authentication solutions.{% endblock %}
+{% block keywords %}Django authentication, passwordless login, magic links, Google OAuth, secure auth, Django framework, web development, authentication system{% endblock %}
+
+{% block og_title %}Django Auth System - Modern Passwordless Authentication Platform{% endblock %}
+{% block og_description %}Secure Django authentication platform with Google OAuth, magic links, and Stripe payments. Fast, modern, and developer-friendly authentication solutions.{% endblock %}
+
+{% block twitter_title %}Django Auth System - Modern Passwordless Authentication{% endblock %}
+{% block twitter_description %}Secure Django authentication platform with Google OAuth, magic links, and Stripe payments.{% endblock %}
+
+{% block content %}
+<main class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Hero Section -->
+            <header class="text-center text-white mb-5">
+                <h1 class="display-4 fw-bold mb-3">
+                    <i class="fas fa-shield-alt me-3" aria-hidden="true"></i>
+                    Django Authentication System
+                </h1>
+                <p class="lead">Unified passwordless authentication - one email handles everything!</p>
+            </header>
+
+            {% if user.is_authenticated %}
+                <!-- Welcome Section for Authenticated Users -->
+                <section class="card mb-4" aria-labelledby="welcome-heading">
+                    <div class="card-body text-center">
+                        <h2 id="welcome-heading" class="card-title text-primary h3">
+                            <i class="fas fa-hand-wave me-2" aria-hidden="true"></i>
+                            Welcome back, {{ user.profile.display_name }}!
+                        </h2>
+                        <p class="card-text">You are successfully logged in to the system.</p>
+                        <div class="row mt-4">
+                            <div class="col-md-6 mb-3">
+                                <a href="{% url 'authentication:profile' %}" class="btn btn-primary btn-lg w-100">
+                                    <i class="fas fa-user me-2" aria-hidden="true"></i>View Profile
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="{% url 'account_logout' %}" class="btn btn-outline-secondary btn-lg w-100">
+                                    <i class="fas fa-sign-out-alt me-2" aria-hidden="true"></i>Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- User Info Card -->
+                <section class="card" aria-labelledby="account-info-heading">
+                    <div class="card-header">
+                        <h3 id="account-info-heading" class="mb-0 h5">
+                            <i class="fas fa-info-circle me-2" aria-hidden="true"></i>Your Account Information
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><strong>Email:</strong> {{ user.email }}</p>
+                                <p><strong>Username:</strong> {{ user.username }}</p>
+                                <p><strong>Date Joined:</strong> <time datetime="{{ user.date_joined|date:'c' }}">{{ user.date_joined|date:"F d, Y" }}</time></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><strong>Last Login:</strong> <time datetime="{{ user.last_login|date:'c' }}">{{ user.last_login|date:"F d, Y g:i A" }}</time></p>
+                                <p><strong>Profile Created:</strong> <time datetime="{{ user.profile.created_at|date:'c' }}">{{ user.profile.created_at|date:"F d, Y" }}</time></p>
+                                <p><strong>Account Status:</strong> 
+                                    <span class="badge bg-success">Active & Verified</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            {% else %}
+                <!-- Authentication Options for Anonymous Users -->
+                <section aria-labelledby="auth-options-heading">
+                    <h2 id="auth-options-heading" class="sr-only">Authentication Options</h2>
+                    <div class="row g-4">
+                        <!-- Google OAuth -->
+                        <div class="col-md-6">
+                            <article class="card h-100 text-center">
+                                <div class="card-body">
+                                    <i class="fab fa-google fa-4x text-danger mb-3" aria-hidden="true"></i>
+                                    <h3 class="card-title h5">Continue with Google</h3>
+                                    <p class="card-text">Quick and secure authentication using your Google account. Works for both new and existing users!</p>
+                                    <a href="{% url 'authentication:google_login' %}" class="btn btn-google btn-lg" aria-label="Sign in with Google OAuth">
+                                        <i class="fab fa-google me-2" aria-hidden="true"></i>Sign in with Google
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+
+                        <!-- Email Magic Link -->
+                        <div class="col-md-6">
+                            <article class="card h-100 text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-envelope fa-4x text-warning mb-3" aria-hidden="true"></i>
+                                    <h3 class="card-title h5">Use Your Email</h3>
+                                    <p class="card-text">Enter your email and we'll handle everything - whether you're signing in or creating a new account!</p>
+                                    <a href="{% url 'account_login' %}" class="btn btn-warning btn-lg" aria-label="Get magic link via email">
+                                        <i class="fas fa-magic me-2" aria-hidden="true"></i>Get Authentication Link
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                    
+                    <!-- Unified Authentication Info -->
+                    <aside class="alert alert-info mt-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-1 text-center">
+                                <i class="fas fa-magic fa-2x text-primary" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-11">
+                                <h4 class="alert-heading mb-2 h6">🚀 Smart Authentication</h4>
+                                <p class="mb-0">
+                                    <strong>One email, everything handled:</strong> Just enter your email address and we'll automatically:
+                                </p>
+                                <ul class="mb-0 mt-2">
+                                    <li>Send you a <strong>sign-in link</strong> if you have an account</li>
+                                    <li>Send you a <strong>registration link</strong> if you're new</li>
+                                    <li>No passwords, no separate sign-up forms, no hassle!</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </aside>
+                </section>
+            {% endif %}
+
+            <!-- Features Section -->
+            <section class="mt-5" aria-labelledby="features-heading">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <h2 id="features-heading" class="text-center text-white mb-4">
+                            <i class="fas fa-star me-2" aria-hidden="true"></i>System Features
+                        </h2>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <article class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-brain fa-2x text-primary mb-3" aria-hidden="true"></i>
+                                <h3 class="card-title h6">Smart Detection</h3>
+                                <p class="card-text small">Automatically detects if you're signing in or signing up.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-md-3">
+                        <article class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fab fa-google fa-2x text-danger mb-3" aria-hidden="true"></i>
+                                <h3 class="card-title h6">Google OAuth</h3>
+                                <p class="card-text small">Seamless integration with Google accounts.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-md-3">
+                        <article class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-envelope fa-2x text-info mb-3" aria-hidden="true"></i>
+                                <h3 class="card-title h6">Email Magic Links</h3>
+                                <p class="card-text small">Secure one-time links sent directly to your email.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-md-3">
+                        <article class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-shield-alt fa-2x text-success mb-3" aria-hidden="true"></i>
+                                <h3 class="card-title h6">Zero Passwords</h3>
+                                <p class="card-text small">Complete passwordless experience for maximum security.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+{% endblock %} 
