@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+
+{% block title %}Political God LLM - AI-Powered Legal Framework Generator{% endblock %}
+{% block description %}Create AI-generated legal frameworks, laws, and constitutions aligned with your political values. The ultimate tool for political theorists, legal professionals, and forward-thinking leaders.{% endblock %}
+{% block keywords %}AI law generation, political AI, legal framework, constitution generator, political values, legal AI, lawmaking, governance{% endblock %}
+
+{% block og_title %}Political God LLM - AI-Powered Legal Framework Generator{% endblock %}
+{% block og_description %}Create AI-generated legal frameworks, laws, and constitutions aligned with your political values. The ultimate tool for political theorists and legal professionals.{% endblock %}
+
+{% block twitter_title %}Political God LLM - AI Legal Framework Generator{% endblock %}
+{% block twitter_description %}Create AI-generated legal frameworks, laws, and constitutions aligned with your political values.{% endblock %}
+
+{% block content %}
+<main class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <!-- Hero Section -->
+            <header class="text-center text-white mb-5">
+                <h1 class="display-3 fw-bold mb-3">
+                    <i class="fas fa-balance-scale me-3" aria-hidden="true"></i>
+                    Political God LLM
+                </h1>
+                <p class="lead fs-4 mb-4">AI-Powered Legal Framework Generator</p>
+                <p class="fs-5 mb-4">Create comprehensive laws, constitutions, and legal frameworks aligned with your political vision</p>
+                
+                <!-- CTA Buttons -->
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="d-grid gap-3 d-md-flex justify-content-md-center">
+                            <a href="{% url 'account_login' %}" class="btn btn-primary btn-lg px-5 py-3">
+                                <i class="fas fa-rocket me-2"></i>Start Creating Laws
+                            </a>
+                            <a href="#features" class="btn btn-outline-light btn-lg px-4 py-3">
+                                <i class="fas fa-info-circle me-2"></i>Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Key Features Section -->
+            <section id="features" class="mb-5" aria-labelledby="features-heading">
+                <div class="row mb-5">
+                    <div class="col-12 text-center">
+                        <h2 id="features-heading" class="text-white mb-4">
+                            <i class="fas fa-star me-2"></i>What Makes Political God LLM Special?
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <article class="card h-100 text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-brain fa-3x text-primary mb-3"></i>
+                                <h3 class="card-title h5">Values-Aligned AI</h3>
+                                <p class="card-text">Configure your political values and watch the AI generate laws that perfectly align with your vision of governance.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <article class="card h-100 text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-gavel fa-3x text-success mb-3"></i>
+                                <h3 class="card-title h5">Comprehensive Laws</h3>
+                                <p class="card-text">Generate detailed legislation with proper legal structure, citations, and implementation guidelines.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <article class="card h-100 text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-university fa-3x text-warning mb-3"></i>
+                                <h3 class="card-title h5">Constitutional Framework</h3>
+                                <p class="card-text">Create entire constitutions and foundational legal documents for new governments or reforms.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <article class="card h-100 text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-search fa-3x text-info mb-3"></i>
+                                <h3 class="card-title h5">AI-Powered Search</h3>
+                                <p class="card-text">Search your legal library with natural language queries and find relevant laws instantly.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <article class="card h-100 text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-chart-line fa-3x text-purple mb-3"></i>
+                                <h3 class="card-title h5">Analytics & Insights</h3>
+                                <p class="card-text">Track your lawmaking patterns and get insights into your political framework evolution.</p>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <article class="card h-100 text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-download fa-3x text-secondary mb-3"></i>
+                                <h3 class="card-title h5">Export & Share</h3>
+                                <p class="card-text">Export your legal frameworks in multiple formats and share your political vision with the world.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How It Works Section -->
+            <section class="mb-5" aria-labelledby="how-it-works-heading">
+                <div class="row mb-4">
+                    <div class="col-12 text-center">
+                        <h2 id="how-it-works-heading" class="text-white mb-4">
+                            <i class="fas fa-cogs me-2"></i>How It Works
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card text-center h-100 border-primary">
+                            <div class="card-body">
+                                <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                    <span class="h4 mb-0">1</span>
+                                </div>
+                                <h3 class="h5">Set Your Values</h3>
+                                <p class="card-text">Configure your political philosophy, priorities, and governance style to align the AI with your vision.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card text-center h-100 border-success">
+                            <div class="card-body">
+                                <div class="rounded-circle bg-success text-white d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                    <span class="h4 mb-0">2</span>
+                                </div>
+                                <h3 class="h5">Generate Laws</h3>
+                                <p class="card-text">Use natural language prompts to generate comprehensive legal frameworks tailored to your needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card text-center h-100 border-warning">
+                            <div class="card-body">
+                                <div class="rounded-circle bg-warning text-dark d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 60px; height: 60px;">
+                                    <span class="h4 mb-0">3</span>
+                                </div>
+                                <h3 class="h5">Build & Refine</h3>
+                                <p class="card-text">Create your legal library, refine laws, and build comprehensive governance frameworks.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Use Cases Section -->
+            <section class="mb-5" aria-labelledby="use-cases-heading">
+                <div class="row mb-4">
+                    <div class="col-12 text-center">
+                        <h2 id="use-cases-heading" class="text-white mb-4">
+                            <i class="fas fa-users me-2"></i>Perfect For
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-user-tie fa-2x text-primary mb-3"></i>
+                                <h3 class="h6 card-title">Political Theorists</h3>
+                                <p class="card-text small">Explore and document your political ideas with AI-generated frameworks.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-balance-scale fa-2x text-success mb-3"></i>
+                                <h3 class="h6 card-title">Legal Professionals</h3>
+                                <p class="card-text small">Draft preliminary legislation and explore legal frameworks quickly.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-graduation-cap fa-2x text-warning mb-3"></i>
+                                <h3 class="h6 card-title">Educators & Students</h3>
+                                <p class="card-text small">Teach and learn about governance through interactive law creation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-lightbulb fa-2x text-info mb-3"></i>
+                                <h3 class="h6 card-title">Innovators</h3>
+                                <p class="card-text small">Model new forms of governance and social organization.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="text-center mb-5">
+                <div class="card bg-primary text-white">
+                    <div class="card-body py-5">
+                        <h2 class="h3 mb-4">Ready to Shape the Future of Governance?</h2>
+                        <p class="lead mb-4">Join Political God LLM and start creating the legal frameworks of tomorrow.</p>
+                        <a href="{% url 'account_login' %}" class="btn btn-light btn-lg px-5">
+                            <i class="fas fa-rocket me-2"></i>Get Started Now
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Authentication Options for Anonymous Users -->
+            <section aria-labelledby="auth-options-heading">
+                <h2 id="auth-options-heading" class="text-center text-white mb-4">Choose Your Sign-In Method</h2>
+                <div class="row g-4 justify-content-center">
+                    <!-- Google OAuth -->
+                    <div class="col-md-5">
+                        <article class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fab fa-google fa-4x text-danger mb-3" aria-hidden="true"></i>
+                                <h3 class="card-title h5">Continue with Google</h3>
+                                <p class="card-text">Quick and secure authentication using your Google account.</p>
+                                <a href="{% url 'authentication:google_login' %}" class="btn btn-google btn-lg">
+                                    <i class="fab fa-google me-2" aria-hidden="true"></i>Sign in with Google
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Email Magic Link -->
+                    <div class="col-md-5">
+                        <article class="card h-100 text-center">
+                            <div class="card-body">
+                                <i class="fas fa-envelope fa-4x text-warning mb-3" aria-hidden="true"></i>
+                                <h3 class="card-title h5">Use Your Email</h3>
+                                <p class="card-text">Enter your email and we'll send you a secure sign-in link.</p>
+                                <a href="{% url 'account_login' %}" class="btn btn-warning btn-lg">
+                                    <i class="fas fa-magic me-2" aria-hidden="true"></i>Get Magic Link
+                                </a>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                
+                <!-- Unified Authentication Info -->
+                <aside class="alert alert-info mt-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-1 text-center">
+                            <i class="fas fa-magic fa-2x text-primary" aria-hidden="true"></i>
+                        </div>
+                        <div class="col-md-11">
+                            <h4 class="alert-heading mb-2 h6">🚀 Smart Authentication</h4>
+                            <p class="mb-0">
+                                <strong>One email, everything handled:</strong> Just enter your email address and we'll automatically determine if you're signing in or creating a new account. No passwords required!
+                            </p>
+                        </div>
+                    </div>
+                </aside>
+            </section>
+        </div>
+    </div>
+</main>
+
+<style>
+.text-purple {
+    color: #6f42c1 !important;
+}
+.btn-google {
+    background-color: #db4437;
+    border-color: #db4437;
+    color: white;
+}
+.btn-google:hover {
+    background-color: #c23321;
+    border-color: #c23321;
+    color: white;
+}
+</style>
+{% endblock %} 

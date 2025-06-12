@@ -1,0 +1,350 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Political God LLM - Network State Laws{% endblock %}
+{% block description %}AI-powered law generation for your network state. Create laws based on your values and principles.{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem 0;
+        margin: -2rem -15px 2rem -15px;
+    }
+    
+    .stats-card {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        border-radius: 15px;
+        transition: transform 0.3s;
+    }
+    
+    .stats-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .law-card {
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    
+    .law-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .quick-action-btn {
+        border-radius: 50px;
+        padding: 15px 30px;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+    }
+    
+    .quick-action-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .credits-badge {
+        background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 25px;
+        font-weight: bold;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Hero Section -->
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">
+                <i class="fas fa-crown me-3"></i>Political God LLM
+            </h1>
+            <p class="lead mb-4">Create laws for your network state with AI-powered intelligence</p>
+            
+            {% if subscription %}
+                <div class="credits-badge d-inline-block">
+                    <i class="fas fa-coins me-2"></i>{{ credits_remaining }} Credits Remaining
+                </div>
+            {% else %}
+                <a href="{% url 'billing:dashboard' %}" class="btn btn-warning btn-lg">
+                    <i class="fas fa-credit-card me-2"></i>Get Credits to Start
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="container">
+        {% if not values_configured %}
+        <!-- Values Setup Alert -->
+        <div class="alert alert-info alert-dismissible fade show" role="alert">
+            <h5><i class="fas fa-brain me-2"></i>Set Up Your Political Values</h5>
+            <p class="mb-2">Before generating laws, tell the AI about your political philosophy and values. This ensures all generated laws align with your vision for your network state.</p>
+            <a href="{% url 'political_god:setup_values' %}" class="btn btn-info">
+                <i class="fas fa-cog me-2"></i>Configure Values Now
+            </a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {% endif %}
+
+        <!-- Quick Actions -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="mb-4"><i class="fas fa-bolt text-primary me-2"></i>Quick Actions</h3>
+            </div>
+            
+            <div class="col-md-4 mb-3">
+                <a href="{% url 'political_god:generate_law' %}" class="btn btn-primary quick-action-btn w-100">
+                    <i class="fas fa-gavel d-block mb-2" style="font-size: 2rem;"></i>
+                    Generate New Law
+                    <small class="d-block">(10 credits)</small>
+                </a>
+            </div>
+            
+            <div class="col-md-4 mb-3">
+                <a href="{% url 'political_god:law_library' %}" class="btn btn-success quick-action-btn w-100">
+                    <i class="fas fa-book d-block mb-2" style="font-size: 2rem;"></i>
+                    Law Library
+                    <small class="d-block">Browse & Search</small>
+                </a>
+            </div>
+            
+            <div class="col-md-4 mb-3">
+                <a href="{% url 'political_god:constitution' %}" class="btn btn-warning quick-action-btn w-100">
+                    <i class="fas fa-scroll d-block mb-2" style="font-size: 2rem;"></i>
+                    Constitution
+                    <small class="d-block">{% if has_constitution %}Edit{% else %}Create{% endif %}</small>
+                </a>
+            </div>
+        </div>
+
+        <!-- Statistics Overview -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="mb-4"><i class="fas fa-chart-bar text-primary me-2"></i>Your Network State</h3>
+            </div>
+            
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="card stats-card text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-balance-scale fa-2x mb-3"></i>
+                        <h4 class="fw-bold">{{ stats.total_laws }}</h4>
+                        <p class="mb-0">Total Laws</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="card stats-card text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-star fa-2x mb-3"></i>
+                        <h4 class="fw-bold">{{ stats.favorite_laws }}</h4>
+                        <p class="mb-0">Favorites</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="card stats-card text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-check-circle fa-2x mb-3"></i>
+                        <h4 class="fw-bold">{{ stats.implemented_laws }}</h4>
+                        <p class="mb-0">Implemented</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 col-sm-6 mb-3">
+                <div class="card stats-card text-center p-4">
+                    <div class="card-body">
+                        <i class="fas fa-percentage fa-2x mb-3"></i>
+                        <h4 class="fw-bold">{{ stats.success_rate|floatformat:0 }}%</h4>
+                        <p class="mb-0">Success Rate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Laws -->
+        {% if recent_laws %}
+        <div class="row mb-5">
+            <div class="col-12">
+                <h3 class="mb-4">
+                    <i class="fas fa-clock text-primary me-2"></i>Recent Laws
+                    <a href="{% url 'political_god:law_library' %}" class="btn btn-outline-primary btn-sm float-end">
+                        View All <i class="fas fa-arrow-right ms-1"></i>
+                    </a>
+                </h3>
+            </div>
+            
+            {% for law in recent_laws %}
+            <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card law-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h6 class="card-title">{{ law.title|truncatechars:50 }}</h6>
+                            {% if law.is_favorite %}
+                                <i class="fas fa-star text-warning"></i>
+                            {% endif %}
+                        </div>
+                        
+                        <p class="card-text text-muted small">{{ law.summary|truncatechars:100 }}</p>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                {{ law.created_at|timesince }} ago
+                            </small>
+                            <a href="{% url 'political_god:law_detail' law.id %}" class="btn btn-primary btn-sm">
+                                View <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <!-- Constitutional Framework -->
+        {% if has_constitution %}
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-scroll me-2"></i>{{ constitution.name }}
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ constitution.preamble|truncatechars:200 }}</p>
+                        <a href="{% url 'political_god:constitution' %}" class="btn btn-primary">
+                            <i class="fas fa-eye me-2"></i>View Full Constitution
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Getting Started -->
+        {% if stats.total_laws == 0 %}
+        <div class="row">
+            <div class="col-12">
+                <div class="card border-info">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-rocket me-2"></i>Getting Started
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p>Welcome to Political God LLM! Here's how to get started:</p>
+                        <ol>
+                            <li><strong>Set up your values:</strong> Define your political philosophy and principles</li>
+                            <li><strong>Generate your first law:</strong> Describe a problem you want to solve</li>
+                            <li><strong>Build your constitution:</strong> Create the foundational framework for your state</li>
+                            <li><strong>Expand your legal system:</strong> Generate more laws as needed</li>
+                        </ol>
+                        
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <a href="{% url 'political_god:setup_values' %}" class="btn btn-info w-100 mb-2">
+                                    <i class="fas fa-brain me-2"></i>Setup Values First
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{% url 'political_god:generate_law' %}" class="btn btn-primary w-100 mb-2">
+                                    <i class="fas fa-gavel me-2"></i>Generate First Law
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Mobile Quick Generate Modal -->
+<div class="modal fade" id="quickGenerateModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Quick Law Generation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="quickGenerateForm">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="quickPrompt" class="form-label">Describe the law:</label>
+                        <textarea class="form-control" id="quickPrompt" name="prompt" rows="4" 
+                                  placeholder="What kind of law do you want to create?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                        <i class="fas fa-magic me-2"></i>Generate Law (10 Credits)
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Quick generate form handler
+document.getElementById('quickGenerateForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const submitBtn = this.querySelector('button[type="submit"]');
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Generating...';
+    
+    fetch('{% url "political_god:quick_generate" %}', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = data.redirect_url;
+        } else {
+            alert('Error: ' + data.error);
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-magic me-2"></i>Generate Law (10 Credits)';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-magic me-2"></i>Generate Law (10 Credits)';
+    });
+});
+
+// Add floating action button for mobile
+if (window.innerWidth <= 768) {
+    const fab = document.createElement('button');
+    fab.className = 'btn btn-primary rounded-circle position-fixed';
+    fab.style.cssText = 'bottom: 20px; right: 20px; width: 60px; height: 60px; z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.3);';
+    fab.innerHTML = '<i class="fas fa-plus fa-lg"></i>';
+    fab.setAttribute('data-bs-toggle', 'modal');
+    fab.setAttribute('data-bs-target', '#quickGenerateModal');
+    document.body.appendChild(fab);
+}
+</script>
+{% endblock %} 

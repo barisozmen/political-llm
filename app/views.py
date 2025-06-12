@@ -12,7 +12,7 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Welcome to Django Auth System'
+        context['title'] = 'Welcome to Political God LLM'
         return context
 
 
@@ -22,7 +22,7 @@ class AboutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'About - Django Auth System'
+        context['title'] = 'About - Political God LLM'
         return context
 
 
@@ -32,7 +32,7 @@ class PrivacyView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Privacy Policy - Django Auth System'
+        context['title'] = 'Privacy Policy - Political God LLM'
         return context
 
 
@@ -42,7 +42,7 @@ class TermsView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Terms of Service - Django Auth System'
+        context['title'] = 'Terms of Service - Political God LLM'
         return context
 
 
@@ -58,13 +58,13 @@ def robots_txt(request):
         "Disallow: /admin/",
         "Disallow: /auth/magic-link/",
         "Disallow: /auth/profile/",
-        "Disallow: /billing/",
+        "Disallow: /political-god/",
         "",
         "# Allow important pages",
         "Allow: /",
-        "Allow: /about/",
-        "Allow: /privacy/",
-        "Allow: /terms/",
+        "Allow: /info/about/",
+        "Allow: /info/privacy/",
+        "Allow: /info/terms/",
         "Allow: /accounts/login/",
         "Allow: /accounts/signup/",
         "",
@@ -79,15 +79,15 @@ def robots_txt(request):
 def manifest_json(request):
     """Generate web app manifest for PWA features"""
     manifest = {
-        "name": "Django Auth System",
-        "short_name": "DjangoAuth",
-        "description": "Modern Django authentication system with Google OAuth and magic links",
+        "name": "Political God LLM",
+        "short_name": "PoliticalLLM",
+        "description": "AI-powered legal framework generator for creating laws and constitutions",
         "start_url": "/",
         "display": "standalone",
         "background_color": "#667eea",
         "theme_color": "#667eea",
         "orientation": "portrait-primary",
-        "categories": ["productivity", "developer", "authentication"],
+        "categories": ["productivity", "legal", "ai"],
         "lang": "en-US",
         "icons": [
             {

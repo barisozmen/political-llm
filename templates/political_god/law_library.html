@@ -1,0 +1,474 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Law Library - Political God LLM{% endblock %}
+{% block description %}Browse and search your generated laws. Organize your network state's legal framework.{% endblock %}
+
+{% block extra_css %}
+<style>
+    .library-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem 0;
+        margin: -2rem -15px 2rem -15px;
+    }
+    
+    .search-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+    
+    .law-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .law-card {
+        background: white;
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+        border: 1px solid #e9ecef;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .law-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        border-color: #667eea;
+    }
+    
+    .law-card-header {
+        display: flex;
+        justify-content-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+    }
+    
+    .law-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #333;
+        margin: 0;
+        line-height: 1.3;
+    }
+    
+    .law-category {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+    }
+    
+    .law-summary {
+        color: #666;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 15px;
+        flex-grow: 1;
+    }
+    
+    .law-tags {
+        margin-bottom: 15px;
+    }
+    
+    .law-tag {
+        background: #f8f9fa;
+        color: #495057;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+    }
+    
+    .law-footer {
+        display: flex;
+        justify-content: between;
+        align-items: center;
+        margin-top: auto;
+        padding-top: 15px;
+        border-top: 1px solid #f1f1f1;
+    }
+    
+    .law-meta {
+        font-size: 0.8rem;
+        color: #999;
+    }
+    
+    .law-actions {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .favorite-btn {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 50%;
+        transition: all 0.3s;
+    }
+    
+    .favorite-btn:hover {
+        background: #f8f9fa;
+    }
+    
+    .favorite-btn.favorited {
+        color: #ffc107;
+    }
+    
+    .status-badges {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 10px;
+    }
+    
+    .status-badge {
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: bold;
+    }
+    
+    .badge-favorite {
+        background: #fff3cd;
+        color: #856404;
+    }
+    
+    .badge-implemented {
+        background: #d1edff;
+        color: #004085;
+    }
+    
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #666;
+    }
+    
+    .empty-state i {
+        font-size: 4rem;
+        color: #ddd;
+        margin-bottom: 20px;
+    }
+    
+    @media (max-width: 768px) {
+        .law-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .law-card-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .law-category {
+            align-self: flex-start;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="library-header text-center">
+        <div class="container">
+            <h1 class="display-5 fw-bold mb-3">
+                <i class="fas fa-book me-3"></i>Law Library
+            </h1>
+            <p class="lead mb-0">Browse, search, and manage your network state's legal framework</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Search Section -->
+        <div class="search-card">
+            {% crispy search_form %}
+        </div>
+
+        <!-- Stats Bar -->
+        <div class="row mb-4">
+            <div class="col-md-3 col-sm-6 mb-2">
+                <div class="card text-center bg-primary text-white">
+                    <div class="card-body py-3">
+                        <h5 class="mb-0">{{ page_obj.paginator.count }}</h5>
+                        <small>Total Laws</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-2">
+                <div class="card text-center bg-warning text-white">
+                    <div class="card-body py-3">
+                        <h5 class="mb-0">{{ categories.count }}</h5>
+                        <small>Categories</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-2">
+                <div class="card text-center bg-success text-white">
+                    <div class="card-body py-3">
+                        <h5 class="mb-0">{{ page_obj.object_list|length }}</h5>
+                        <small>On This Page</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-2">
+                <div class="text-center">
+                    <a href="{% url 'political_god:generate_law' %}" class="btn btn-primary w-100">
+                        <i class="fas fa-plus me-2"></i>New Law
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Laws Grid -->
+        {% if page_obj %}
+            <div class="law-grid">
+                {% for law in page_obj %}
+                    <div class="law-card">
+                        <div class="law-card-header">
+                            <h3 class="law-title">{{ law.title }}</h3>
+                            {% if law.category %}
+                                <span class="law-category">
+                                    <i class="{{ law.category.icon }} me-1"></i>{{ law.category.name }}
+                                </span>
+                            {% endif %}
+                        </div>
+
+                        {% if law.is_favorite or law.is_implemented %}
+                            <div class="status-badges">
+                                {% if law.is_favorite %}
+                                    <span class="status-badge badge-favorite">
+                                        <i class="fas fa-star me-1"></i>Favorite
+                                    </span>
+                                {% endif %}
+                                {% if law.is_implemented %}
+                                    <span class="status-badge badge-implemented">
+                                        <i class="fas fa-check me-1"></i>Implemented
+                                    </span>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+
+                        <div class="law-summary">
+                            {{ law.summary|truncatechars:150 }}
+                        </div>
+
+                        {% if law.tag_list %}
+                            <div class="law-tags">
+                                {% for tag in law.tag_list %}
+                                    <span class="law-tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="law-footer">
+                            <div class="law-meta">
+                                <i class="fas fa-clock me-1"></i>
+                                {{ law.created_at|timesince }} ago
+                            </div>
+                            <div class="law-actions">
+                                <button class="favorite-btn {% if law.is_favorite %}favorited{% endif %}" 
+                                        onclick="toggleFavorite('{{ law.id }}')" 
+                                        title="{% if law.is_favorite %}Remove from favorites{% else %}Add to favorites{% endif %}">
+                                    <i class="{% if law.is_favorite %}fas{% else %}far{% endif %} fa-star"></i>
+                                </button>
+                                <a href="{% url 'political_god:law_detail' law.id %}" 
+                                   class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-eye me-1"></i>View
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+                <nav aria-label="Law library pagination">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">
+                                    <i class="fas fa-angle-left"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <li class="page-item active">
+                                    <span class="page-link">{{ num }}</span>
+                                </li>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ num }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">{{ num }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.query %}&query={{ request.GET.query }}{% endif %}">
+                                    <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+
+        {% else %}
+            <!-- Empty State -->
+            <div class="empty-state">
+                <i class="fas fa-balance-scale"></i>
+                <h3>No Laws Found</h3>
+                <p class="mb-4">
+                    {% if request.GET.query %}
+                        No laws match your search criteria. Try adjusting your search terms.
+                    {% else %}
+                        You haven't generated any laws yet. Start building your network state's legal framework!
+                    {% endif %}
+                </p>
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        {% if request.GET.query %}
+                            <a href="{% url 'political_god:law_library' %}" class="btn btn-outline-primary me-3">
+                                <i class="fas fa-times me-2"></i>Clear Search
+                            </a>
+                        {% endif %}
+                        <a href="{% url 'political_god:generate_law' %}" class="btn btn-primary">
+                            <i class="fas fa-plus me-2"></i>Generate Your First Law
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function toggleFavorite(lawId) {
+    const button = document.querySelector(`button[onclick="toggleFavorite('${lawId}')"]`);
+    const icon = button.querySelector('i');
+    
+    fetch(`/political-god/law/${lawId}/toggle-favorite/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            if (data.is_favorite) {
+                button.classList.add('favorited');
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                button.title = 'Remove from favorites';
+            } else {
+                button.classList.remove('favorited');
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                button.title = 'Add to favorites';
+            }
+            
+            // Show toast notification
+            showToast(data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showToast('Error updating favorite status', 'error');
+    });
+}
+
+function showToast(message, type = 'success') {
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `alert alert-${type === 'success' ? 'success' : 'danger'} toast-notification`;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        min-width: 250px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    `;
+    toast.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check' : 'exclamation-triangle'} me-2"></i>
+        ${message}
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Fade in
+    setTimeout(() => toast.style.opacity = '1', 100);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => document.body.removeChild(toast), 300);
+    }, 3000);
+}
+
+// Add mobile-specific interactions
+if (window.innerWidth <= 768) {
+    // Add swipe gestures for law cards
+    let startX, startY;
+    
+    document.querySelectorAll('.law-card').forEach(card => {
+        card.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+            startY = e.touches[0].clientY;
+        });
+        
+        card.addEventListener('touchend', e => {
+            if (!startX || !startY) return;
+            
+            const endX = e.changedTouches[0].clientX;
+            const endY = e.changedTouches[0].clientY;
+            const diffX = startX - endX;
+            const diffY = startY - endY;
+            
+            // Swipe right to favorite
+            if (Math.abs(diffX) > Math.abs(diffY) && diffX < -50) {
+                const favoriteBtn = card.querySelector('.favorite-btn');
+                if (favoriteBtn) favoriteBtn.click();
+            }
+            
+            startX = startY = null;
+        });
+    });
+}
+</script>
+{% endblock %} 

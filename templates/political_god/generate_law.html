@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Generate New Law - Political God LLM{% endblock %}
+{% block description %}Create a new law for your network state using AI-powered intelligence based on your values and principles.{% endblock %}
+
+{% block extra_css %}
+<style>
+    .generation-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .credit-indicator {
+        background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 15px;
+        border-radius: 15px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .generation-form {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .example-prompts {
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .example-prompt {
+        background: white;
+        border: 1px solid #e9ecef;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .example-prompt:hover {
+        border-color: #667eea;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .example-prompt:last-child {
+        margin-bottom: 0;
+    }
+    
+    .btn-generate {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        border: none;
+        border-radius: 50px;
+        padding: 15px 30px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+    }
+    
+    .btn-generate:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="generation-container">
+        <!-- Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold text-primary">
+                <i class="fas fa-gavel me-3"></i>Generate New Law
+            </h1>
+            <p class="lead text-muted">Describe the law you want to create and let AI craft it based on your values</p>
+        </div>
+
+        <!-- Credit Indicator -->
+        <div class="credit-indicator">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h5 class="mb-0">
+                        <i class="fas fa-coins me-2"></i>Credits Available: {{ credits_remaining }}
+                    </h5>
+                </div>
+                <div class="col-md-6">
+                    <p class="mb-0">This generation will cost <strong>10 credits</strong></p>
+                </div>
+            </div>
+            {% if credits_remaining < 10 %}
+            <div class="mt-3">
+                <a href="{% url 'billing:dashboard' %}" class="btn btn-warning">
+                    <i class="fas fa-credit-card me-2"></i>Get More Credits
+                </a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Example Prompts -->
+        <div class="example-prompts">
+            <h5 class="mb-3">
+                <i class="fas fa-lightbulb text-warning me-2"></i>Example Law Ideas
+            </h5>
+            <p class="text-muted mb-3">Click any example to use it as a starting point:</p>
+            
+            <div class="example-prompt" onclick="useExample('Create a comprehensive data privacy law that protects citizens while enabling innovation. Include provisions for data ownership, consent mechanisms, and penalties for violations.')">
+                <strong>Data Privacy Protection Act</strong>
+                <p class="text-muted mb-0 small">Comprehensive data privacy law balancing protection and innovation</p>
+            </div>
+            
+            <div class="example-prompt" onclick="useExample('Design a law for regulating AI development and deployment in our network state. Focus on safety, transparency, and ethical guidelines while promoting technological advancement.')">
+                <strong>AI Governance and Ethics Law</strong>
+                <p class="text-muted mb-0 small">Regulate AI development with safety and ethical guidelines</p>
+            </div>
+            
+            <div class="example-prompt" onclick="useExample('Create a sustainable energy law that mandates renewable energy adoption, provides incentives for clean technology, and establishes carbon neutrality goals.')">
+                <strong>Sustainable Energy Transition Act</strong>
+                <p class="text-muted mb-0 small">Mandate renewable energy and carbon neutrality</p>
+            </div>
+            
+            <div class="example-prompt" onclick="useExample('Establish a digital nomad integration law that creates pathways for remote workers to join our network state, including visa requirements, tax obligations, and civic participation.')">
+                <strong>Digital Nomad Integration Law</strong>
+                <p class="text-muted mb-0 small">Framework for integrating digital nomads into the network state</p>
+            </div>
+        </div>
+
+        <!-- Generation Form -->
+        <div class="generation-form">
+            {% crispy form %}
+        </div>
+
+        <!-- Tips -->
+        <div class="mt-4">
+            <div class="card border-info">
+                <div class="card-header bg-info text-white">
+                    <h6 class="mb-0">
+                        <i class="fas fa-info-circle me-2"></i>Tips for Better Laws
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li><strong>Be specific:</strong> Clearly describe the problem and desired outcome</li>
+                        <li><strong>Include context:</strong> Mention relevant circumstances or constraints</li>
+                        <li><strong>Define scope:</strong> Specify who or what the law applies to</li>
+                        <li><strong>Consider enforcement:</strong> Think about how the law will be implemented</li>
+                        <li><strong>Align with values:</strong> Ensure it matches your configured political principles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function useExample(text) {
+    const promptField = document.getElementById('id_prompt');
+    if (promptField) {
+        promptField.value = text;
+        promptField.focus();
+        
+        // Smooth scroll to form
+        document.querySelector('.generation-form').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
+    }
+}
+
+// Form validation
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const promptField = document.getElementById('id_prompt');
+    const submitBtn = document.querySelector('button[type="submit"]');
+    
+    if (form && promptField && submitBtn) {
+        form.addEventListener('submit', function(e) {
+            const prompt = promptField.value.trim();
+            
+            if (prompt.length < 20) {
+                e.preventDefault();
+                alert('Please provide a more detailed description (at least 20 characters)');
+                promptField.focus();
+                return;
+            }
+            
+            if ({{ credits_remaining }} < 10) {
+                e.preventDefault();
+                alert('Insufficient credits. Please purchase more credits to generate laws.');
+                return;
+            }
+            
+            // Update button to show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Generating Law...';
+        });
+    }
+});
+
+// Auto-save draft functionality
+let saveTimeout;
+const promptField = document.getElementById('id_prompt');
+
+if (promptField) {
+    promptField.addEventListener('input', function() {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+            localStorage.setItem('law_draft', this.value);
+        }, 1000);
+    });
+    
+    // Load saved draft
+    const savedDraft = localStorage.getItem('law_draft');
+    if (savedDraft && !promptField.value) {
+        promptField.value = savedDraft;
+    }
+}
+</script>
+{% endblock %} 

@@ -59,11 +59,16 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.sitemaps",  # SEO: Sitemap framework for search engines
     
+    # Third party apps
+    "crispy_forms",
+    "crispy_bootstrap5",
+    
     # Local apps
     "core",
     "app",
     "authentication",
     "billing",
+    "political_god",
 ]
 
 MIDDLEWARE = [
@@ -195,5 +200,12 @@ FACEBOOK_APP_ID = config("FACEBOOK_APP_ID", default="")
 # Site configuration for better SEO
 USE_HTTPS = not DEBUG  # Use HTTPS in production
 SITE_DOMAIN = config("SITE_DOMAIN", default="djangotemplate.bozmen.xyz")
-SITE_NAME = config("SITE_NAME")
-PROJECT_NAME = config("PROJECT_NAME")
+SITE_NAME = config("SITE_NAME", default="Political God LLM")
+PROJECT_NAME = config("PROJECT_NAME", default="Political God LLM")
+
+# Crispy Forms Configuration
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# OpenAI Configuration
+OPENAI_API_KEY = config("OPENAI_API_KEY", default="")

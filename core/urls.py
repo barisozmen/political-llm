@@ -30,33 +30,18 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    
-    # SEO: XML Sitemap for search engines
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-    
-    # Custom login view (handles both sign-in and sign-up)
-    path('accounts/login/', CustomLoginView.as_view(), name='account_login'),
-    
-    # Custom logout view (redirects to home)
-    path('accounts/logout/', custom_logout_view, name='account_logout'),
-    
-    # Redirect signup to login since we handle both
-    path('accounts/signup/', RedirectView.as_view(url='/accounts/login/', permanent=False), name='account_signup'),
-    
-    # Google OAuth callback (must match Google Cloud Console configuration)
-    path('accounts/google/login/callback/', GoogleOAuthCallbackView.as_view(), name='google_oauth_callback'),
-    
-    # Authentication app URLs
+    path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
     path('auth/', include('authentication.urls')),
     
-    # Billing app URLs
-    path('billing/', include('billing.urls')),
+    # Political God LLM is now the main app at root
+    path('', include('political_god.urls')),
     
-    # Main app URLs
-    path('', include('app.urls')),
+    # Move old boilerplate app to /info/ prefix for utility pages
+    path('info/', include('app.urls')),
 ]
 
+# Serve media files during development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
